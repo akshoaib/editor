@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>Dropzone</title>
+
+        <link rel="icon" href="favicon.ico" />
+
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5.9.2/dist/dropzone.css" />
+        <link rel="stylesheet" href="./pintura/pintura.css" />
+    </head>
+    <body>
+        <div class="dropzone" id="pinturaDropzone"></div>
+
+        <script src="https://unpkg.com/dropzone@5.9.2/dist/dropzone.js"></script>
+        <script src="./useEditorWithDropzone-iife.js"></script>
+
+        <script type="module">
+            import {
+                // editor
+                openDefaultEditor,
+
+                // plugins
+                createMarkupEditorToolbar,
+            } from './pintura/pintura.js';
+
+            // Create a Dropzone
+            Dropzone.options.pinturaDropzone = useEditorWithDropzone(
+                // method to create editor
+                openDefaultEditor,
+
+                // editor properties
+                {
+                    // we want a square crop
+                    imageCropAspectRatio: 1,
+                },
+
+                // dropzone options
+                {
+                    url: '/post',
+                    addRemoveLinks: true,
+                }
+            );
+        </script>
+    </body>
+</html>

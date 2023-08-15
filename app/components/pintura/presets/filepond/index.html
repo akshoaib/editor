@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>FilePond</title>
+
+        <link rel="icon" href="favicon.ico" />
+
+        <!-- filepond -->
+        <link href="./filepond/filepond.css" rel="stylesheet" type="text/css" />
+        <link href="./filepond/filepond-plugin-file-poster.css" rel="stylesheet" type="text/css" />
+
+        <!-- pintura -->
+        <link href="./pintura/pintura.css" rel="stylesheet" type="text/css" />
+
+        <style>
+            main {
+                max-width: 30em;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <input type="file" multiple />
+        </main>
+
+        <!-- filepond -->
+        <script src="./filepond/filepond.js"></script>
+        <script src="./filepond/filepond-plugin-file-poster.js"></script>
+        <script src="./filepond/filepond-plugin-file-validate-type.js"></script>
+
+        <!-- filepond image editor plugin -->
+        <script src="./filepond-plugin-image-editor/FilePondPluginImageEditor.js"></script>
+
+        <!-- pintura image editor -->
+        <script type="module">
+            import {
+                // Pintura editor components needed for integration with FilePond
+                openEditor,
+                processImage,
+                createDefaultImageReader,
+                createDefaultImageWriter,
+                legacyDataToImageState,
+
+                // Import the editor default configuration
+                getEditorDefaults,
+            } from './pintura/pintura.js';
+
+            // Register FilePond plugins
+            FilePond.registerPlugin(
+                FilePondPluginFileValidateType,
+                FilePondPluginImageEditor,
+                FilePondPluginFilePoster
+            );
+
+            var pond = FilePond.create(document.querySelector('input'), {
+                /* FilePond properties */
+                allowReorder: true,
+                filePosterMaxHeight: 256,
+
+                /* Image Editor plugin properties */
+                imageEditor: {
+                    // used to create the editor, receives editor configuration, should return an editor instance
+                    createEditor: openEditor,
+
+                    // Required, used for reading the image data
+                    imageReader: [createDefaultImageReader],
+
+                    // optionally. can leave out when not generating a preview thumbnail and/or output image
+                    imageWriter: [
+                        createDefaultImageWriter,
+                        // optional image writer instructions, this instructs
+                        // the image writer to resize the image to match a width of 384 pixels
+                        {
+                            targetSize: {
+                                width: 384,
+                            },
+                        },
+                    ],
+
+                    // used to generate poster images, runs an editor in the background
+                    imageProcessor: processImage,
+
+                    // Pintura Image Editor properties
+                    editorOptions: {
+                        // pass the editor default configuration options
+                        ...getEditorDefaults(),
+
+                        // we want a square crop
+                        imageCropAspectRatio: 1,
+                    },
+
+                    // map legacy data objects to new imageState objects, uncomment if you've used FilePond with version 6 of Pintura and are loading old file metadata
+                    // legacyDataToImageState: legacyDataToImageState,
+                },
+
+                /* uncomment to preview the output image
+                onpreparefile: (fileItem, file) => {
+                    const image = new Image();
+                    image.src = URL.createObjectURL(file);
+                    document.body.appendChild(image);
+                },
+                */
+            });
+        </script>
+    </body>
+</html>

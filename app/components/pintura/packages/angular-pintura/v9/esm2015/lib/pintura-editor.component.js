@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+import { appendEditor } from 'pintura';
+import { PinturaEditorAbstractComponent } from './pintura-editor-abstract.component';
+export class PinturaEditorComponent extends PinturaEditorAbstractComponent {
+    initEditor(element, props) {
+        return appendEditor(element, props);
+    }
+}
+PinturaEditorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'pintura-editor',
+                template: ` <ng-content></ng-content> `
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGludHVyYS1lZGl0b3IuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Ii4uLy4uLy4uLy4uL3NyYy9hbmd1bGFyLXBpbnR1cmEvdjkvcHJvamVjdHMvYW5ndWxhci1waW50dXJhL3NyYy8iLCJzb3VyY2VzIjpbImxpYi9waW50dXJhLWVkaXRvci5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBVSxNQUFNLGVBQWUsQ0FBQztBQUNsRCxPQUFPLEVBQUUsWUFBWSxFQUF1QyxNQUFNLFNBQVMsQ0FBQztBQUM1RSxPQUFPLEVBQUUsOEJBQThCLEVBQUUsTUFBTSxxQ0FBcUMsQ0FBQztBQU9yRixNQUFNLE9BQU8sc0JBQTBCLFNBQVEsOEJBQWlDO0lBQzVFLFVBQVUsQ0FBQyxPQUFvQixFQUFFLEtBQTJCO1FBQ3hELE9BQU8sWUFBWSxDQUFDLE9BQU8sRUFBRSxLQUFLLENBQUMsQ0FBQztJQUN4QyxDQUFDOzs7WUFSSixTQUFTLFNBQUM7Z0JBQ1AsUUFBUSxFQUFFLGdCQUFnQjtnQkFDMUIsUUFBUSxFQUFFLDZCQUE2QjthQUUxQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgT25Jbml0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBhcHBlbmRFZGl0b3IsIFBpbnR1cmFFZGl0b3IsIFBpbnR1cmFFZGl0b3JPcHRpb25zIH0gZnJvbSAncGludHVyYSc7XG5pbXBvcnQgeyBQaW50dXJhRWRpdG9yQWJzdHJhY3RDb21wb25lbnQgfSBmcm9tICcuL3BpbnR1cmEtZWRpdG9yLWFic3RyYWN0LmNvbXBvbmVudCc7XG5cbkBDb21wb25lbnQoe1xuICAgIHNlbGVjdG9yOiAncGludHVyYS1lZGl0b3InLFxuICAgIHRlbXBsYXRlOiBgIDxuZy1jb250ZW50PjwvbmctY29udGVudD4gYCxcbiAgICBzdHlsZXM6IFtdLFxufSlcbmV4cG9ydCBjbGFzcyBQaW50dXJhRWRpdG9yQ29tcG9uZW50PFQ+IGV4dGVuZHMgUGludHVyYUVkaXRvckFic3RyYWN0Q29tcG9uZW50PFQ+IGltcGxlbWVudHMgT25Jbml0IHtcbiAgICBpbml0RWRpdG9yKGVsZW1lbnQ6IEhUTUxFbGVtZW50LCBwcm9wczogUGludHVyYUVkaXRvck9wdGlvbnMpOiBQaW50dXJhRWRpdG9yIHtcbiAgICAgICAgcmV0dXJuIGFwcGVuZEVkaXRvcihlbGVtZW50LCBwcm9wcyk7XG4gICAgfVxufVxuIl19
